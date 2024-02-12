@@ -11,3 +11,4 @@ _python app.py (using flask)_
 _http://127.0.0.1:5000/_
 **make sure the  pdf in your folder and cd**
 
+**MAKE SURE THE INDEX>HTML FILE  ADD IN TEMPLATES**
