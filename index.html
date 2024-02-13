@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap" rel="stylesheet">
+    <title>Resume Analysis</title>
+
+
+
+    <style>
+        
+        body {
+            background-color: #19191a; 
+            color: #333; 
+            /* font-family: Arial, sans-serif;  */
+            /* font-style: oblique;  */
+            text-align: center; 
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .navbar-cu {
+            background-color: red; 
+            padding: 30px; 
+            margin-top: 0; 
+            font-size: 2em; /* Adjusted font size */
+            font-style:oblique;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .navbar-cu .navbar-brand {
+            color: #eaeef0; 
+        }
+        .navbar-cu .navbar-brand:hover {
+            color: #282a2f; 
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            background-color: #010e37;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .output-container {
+            background-color: #1e1e1e; 
+            margin: 20px auto;
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+            text-align: left;
+            max-width: 600px; 
+            /* font-style: oblique;  */
+            font-family: "Quicksand", sans-serif;
+        }
+        h1,p {
+            color: #f1f2ee; 
+            font-size: 3em; 
+            font-family: "Protest Revolution", sans-serif;
+        }
+        span{
+            color: #b0e60f;
+        }
+        h2 {
+            color: #e4e4e4; 
+        }
+        ul{
+            color: #f4f0f0; 
+        }
+        p {
+            font-size: 1.5em; /* Adjusted font size */
+            font-style: oblique; 
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1> <span>R</span>esume  <span>A</span>nalyzer</h1>
+        <form method="POST">
+            <!-- <p><label for="pdf_path">NAME HERE:</label></p><br> -->
+            <input type="text" id="pdf_path" name="pdf_path" placeholder="PDF NAME" ><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
+    <div class="output-container">
+        {% if name %}
+            <h2>Name: {{ name }}</h2>
+        {% endif %}
+        {% if emails %}
+            <h2>Emails:</h2>
+            <ul>
+                {% for email in emails %}
+                    <li>{{ email }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if phone_number %}
+            <h2>Phone number: {{ phone_number }}</h2>
+        {% endif %}
+        {% if skills %}
+            <h2>Skills:</h2>
+            <ul>
+                {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
