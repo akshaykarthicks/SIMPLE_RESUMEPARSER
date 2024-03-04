@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from pdfminer.high_level import extract_text
 import spacy
 import re
+import os
 
 app = Flask(__name__)
 
@@ -9,10 +10,26 @@ PHONE_REG = re.compile(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]')
 EMAIL_REG = re.compile(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+')
 nlp = spacy.load("en_core_web_sm")
 
+UPLOADS_DIR = 'uploads'  # Define the directory to store uploaded files
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    if not os.path.exists(UPLOADS_DIR):
+        os.makedirs(UPLOADS_DIR)  # Create the uploads directory if it doesn't exist
+
     if request.method == 'POST':
-        pdf_path = request.form['pdf_path']
+        if 'pdf_file' not in request.files:
+            return "No file part"
+        
+        pdf_file = request.files['pdf_file']
+        
+        if pdf_file.filename == '':
+            return "No selected file"
+        
+        # Save the file to the uploads directory
+        pdf_path = os.path.join(UPLOADS_DIR, pdf_file.filename)
+        pdf_file.save(pdf_path)
+
         txt = extract_text_from_pdf(pdf_path)
 
         name = extract_name(txt)
