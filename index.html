@@ -4,40 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <title>Resume Analysis</title>
 
-
-
     <style>
-        
         body {
-            background-color: #19191a; 
-            color: #333; 
-            /* font-family: Arial, sans-serif;  */
-            /* font-style: oblique;  */
+            background-color: #ffffff; /* White background */
+            color: #000000; /* Black text */
             text-align: center; 
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            font-family: 'Roboto', sans-serif; /* Roboto font */
+            position: relative; /* Add relative positioning */
         }
-        .navbar-cu {
-            background-color: red; 
-            padding: 30px; 
-            margin-top: 0; 
-            font-size: 2em; /* Adjusted font size */
-            font-style:oblique;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .navbar-cu .navbar-brand {
-            color: #eaeef0; 
-        }
-        .navbar-cu .navbar-brand:hover {
-            color: #282a2f; 
+        .top-text {
+            position: absolute; /* Absolute positioning */
+            top: 0; /* Align to the top */
+            left: 50px; /* Align to the left */
+            width: 100%; /* Full width */
+            font-size: 0.8em; /* Adjust font size */
+            padding: 20px; /* Add padding */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         .sidebar {
             position: fixed;
@@ -45,55 +36,84 @@
             top: 0;
             bottom: 0;
             width: 250px;
-            background-color: #010e37;
+            background-color: #000000; /* Black sidebar background */
             padding: 20px;
             box-sizing: border-box;
             overflow-y: auto;
+            border-right: 1px solid #cccccc; /* Light gray border right */
         }
         .output-container {
-            background-color: #1e1e1e; 
+            background-color: #ffffff; /* White background */
             margin: 20px auto;
             padding: 20px; 
             border-radius: 10px; 
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Light shadow */
             text-align: left;
             max-width: 600px; 
-            /* font-style: oblique;  */
-            font-family: "Quicksand", sans-serif;
         }
-        h1,p {
-            color: #f1f2ee; 
+        h1, p {
+            color: #f7f6f6; /* Black text */
             font-size: 3em; 
-            font-family: "Protest Revolution", sans-serif;
         }
-        span{
-            color: #b0e60f;
+        span {
+            color: #ffffff; /* White text */
         }
         h2 {
-            color: #e4e4e4; 
+            color: #040404; /* White text */
+            font-size: 1.5em;
+            margin-top: 20px; /* Add some spacing */
         }
-        ul{
-            color: #f4f0f0; 
+        ul {
+            color: #101010; /* White text */
+            list-style-type: none; /* Remove default list style */
+            padding-left: 0; /* Remove default list padding */
         }
-        p {
-            font-size: 1.5em; /* Adjusted font size */
-            font-style: oblique; 
+        li {
+            margin-bottom: 10px; /* Add some spacing between list items */
         }
+        input[type="file"],
+        button {
+            padding: 10px 20px; /* Add padding to input and button */
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #faf9f9; /* Black background */
+            color: #070707; /* White text */
+            cursor: pointer; /* Show pointer cursor on hover */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        input[type="file"]:hover,
+        button:hover {
+            background-color: #333333; /* Dark gray on hover */
+        }
+        input[type="file"] {
+            display: none; /* Hide file input */
+        }
+        button {
+            margin-top: 10px; /* Add some spacing */
+        }
+        
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h1> <span>R</span>esume  <span>A</span>nalyzer</h1>
-        <form method="POST">
-            <!-- <p><label for="pdf_path">NAME HERE:</label></p><br> -->
-            <input type="text" id="pdf_path" name="pdf_path" placeholder="PDF NAME" ><br><br>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="top-text">
+                    You can  get summaries of candidate profiles, and figure out which candidates would be best suited for a particular role and more.<br>
+                    >Upload your pdf and get the data !!
     </div>
 
-
-
+    <div class="sidebar">
+        <h1> <span>R</span>esume  <span>A</span>nalyzer</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="pdf_file">
+                <input type="file" id="pdf_file" name="pdf_file" accept=".pdf">
+                <span>Upload Resume</span>
+            </label>
+            <br><br>
+            <button type="submit">Analyze</button>
+        </form>
+    </div>
     <div class="output-container">
+        Here is your summaries !!
         {% if name %}
             <h2>Name: {{ name }}</h2>
         {% endif %}
@@ -117,5 +137,5 @@
             </ul>
         {% endif %}
     </div>
-</body>
+    
 </html>
